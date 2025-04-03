@@ -18,5 +18,8 @@ namespace AcademiaGerenciamentoLibary.Domain
         [StringLength(50)]
         public string MetodoPagamento { get; set; } = string.Empty;    
         public byte StatusPagamento { get; set; }
+        //relacionamento
+        [ForeignKey("AlunoID")]
+        public virtual Aluno? Aluno { get; set; } 
     }
 }
