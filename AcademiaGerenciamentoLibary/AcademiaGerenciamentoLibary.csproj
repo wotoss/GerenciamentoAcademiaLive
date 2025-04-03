@@ -9,7 +9,6 @@
   <ItemGroup>
     <Folder Include="AutoMapper\" />
     <Folder Include="Configurations\" />
-    <Folder Include="Domain\" />
     <Folder Include="DTO\" />
     <Folder Include="Extensions\" />
     <Folder Include="Mappings\" />
