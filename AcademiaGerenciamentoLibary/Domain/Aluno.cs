@@ -18,5 +18,9 @@ namespace AcademiaGerenciamentoLibary.Domain
         [Required]
         public byte Status { get; set; } = 1;
         public DateTime? DataPagamento { get; set; } = DateTime.Now;
+
+        // - 1:N - Aluno pode ter vários pagamento
+        // - Cada - pagamento possui um unico aluno
+        public virtual ICollection<Pagamento> Pagamentos { get; set; } = new List<Pagamento>();
     }
 }

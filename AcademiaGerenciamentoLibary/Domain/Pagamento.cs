@@ -18,8 +18,9 @@ namespace AcademiaGerenciamentoLibary.Domain
         [StringLength(50)]
         public string MetodoPagamento { get; set; } = string.Empty;    
         public byte StatusPagamento { get; set; }
-        //relacionamento
+        //relacionamento - cada pagamento estará ligado a um unico aluno
         [ForeignKey("AlunoID")]
-        public virtual Aluno? Aluno { get; set; } 
+        public virtual Aluno? Aluno { get; set; }
+        // - Cada - pagamento possui um unico aluno
     }
 }
