@@ -7,13 +7,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="AutoMapper\" />
     <Folder Include="Configurations\" />
-    <Folder Include="DTO\" />
     <Folder Include="Extensions\" />
     <Folder Include="Mappings\" />
-    <Folder Include="Services\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
 
   <ItemGroup>
