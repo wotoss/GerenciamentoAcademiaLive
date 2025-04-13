@@ -17,13 +17,16 @@ namespace AcademiaGerenciamentoLibary.Configurations
         {
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
+
             //AddScoped, AddTransient
 
             //services
             services.AddScoped<IAlunoServices, AlunoServices>();
             services.AddScoped<IPagamentoServices, PagamentoServices>();
-            //IUnitOfWork, UnitOfWork
-            //services.AddScoped<IUnitOfWork, UnityOfWork>();
+            //IUnitOfWork, UnitOfWork 12-04-25 ajuste agora 
+            
+            //fim - 12-04-25
 
             //repository
             services.AddScoped<IAlunoRepository, AlunoRepository>();

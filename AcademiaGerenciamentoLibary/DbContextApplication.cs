@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AcademiaGerenciamentoLibary.Domain;
+using AcademiaGerenciamentoLibary.Mappings;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,13 +14,8 @@ namespace AcademiaGerenciamentoLibary
         public DbContextApplication(DbContextOptions<DbContextApplication> options) 
             : base(options)
         { }
+      
 
-        //Mapeamento
-        //protected override void OnModelCreaating(ModelBuilder modelBuilder)
-        //{
-        //    modelBuilder.ApplyConfiguration(new AlunoMapping());
-        //}
-       
     }
 
 }

@@ -20,10 +20,10 @@ namespace AcademiaGerenciamentoLibary.Domain
         [Required]
         public byte Status { get; set; } = 1;
 
-        public DateTime DataCadastro { get; set; }
+        public DateTime DataCadastro { get; set; } = DateTime.Now;
 
 
-        public DateTime? DataPagamento { get; set; } = DateTime.Now;
+        public DateTime? DataPagamento { get; set; } 
 
         // - 1:N - Aluno pode ter vários pagamento
         // - Cada - pagamento possui um unico aluno

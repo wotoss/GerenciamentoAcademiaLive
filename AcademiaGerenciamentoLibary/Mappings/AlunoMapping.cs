@@ -41,7 +41,8 @@ namespace AcademiaGerenciamentoLibary.Mappings
 
             builder.Property(aluno => aluno.DataCadastro)
                 .HasColumnType("datetime")
-                .HasDefaultValue("getdate()");
+                .HasDefaultValueSql("getdate()");
+
 
             builder.Property(aluno => aluno.DataPagamento)
                 .HasColumnType("date");
