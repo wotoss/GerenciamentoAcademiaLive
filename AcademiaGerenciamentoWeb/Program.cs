@@ -75,7 +75,10 @@ namespace AcademiaGerenciamentoWeb
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-           
+            //adicionando a chamada do banco
+            builder.Services.AddDbContext<DbContextApplication>(options =>
+                options.UseSqlServer(builder.Configuration.GetConnectionString("ConexaoAcademia")));
+
             // Adiciona páginas Razor (caso use na UI)
             builder.Services.AddRazorPages();
 
@@ -95,10 +98,6 @@ namespace AcademiaGerenciamentoWeb
             // Adiciona controllers (necessário para API)
             builder.Services.AddControllers();
 
-            
-
-           
-
             var app = builder.Build();
 
             // Middleware pipeline
@@ -117,7 +116,7 @@ namespace AcademiaGerenciamentoWeb
             app.MapRazorPages();
 
             // Mapeia controllers da API
-            app.MapControllers(); // ? ESSENCIAL para habilitar API controllers
+            app.MapControllers(); 
 
             app.Run();
         }

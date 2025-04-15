@@ -11,5 +11,6 @@ namespace AcademiaGerenciamentoLibary.Services.Interfaces
     //Contrato
     public interface IAlunoServices
     {
+        //Task
     }
 }

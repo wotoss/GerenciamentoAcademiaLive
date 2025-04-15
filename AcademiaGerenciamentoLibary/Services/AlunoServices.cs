@@ -24,6 +24,7 @@ namespace AcademiaGerenciamentoLibary.Services
             _unityOfWork = unityOfWork;
             _mapper = mapper;
         }
-        
+        //Implementação - comunicação IUnitOfWork
+
     }
 }

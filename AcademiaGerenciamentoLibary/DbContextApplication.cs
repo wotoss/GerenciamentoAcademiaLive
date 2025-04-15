@@ -14,7 +14,15 @@ namespace AcademiaGerenciamentoLibary
         public DbContextApplication(DbContextOptions<DbContextApplication> options) 
             : base(options)
         { }
-      
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfiguration(new AlunoMapping());
+            modelBuilder.ApplyConfiguration(new PagamentoMapping());
+        }
+        //DbSet
+        public DbSet<Aluno> Alunos { get; set; }
+        public DbSet<Pagamento> Pagamentos { get; set; }
 
     }
 
