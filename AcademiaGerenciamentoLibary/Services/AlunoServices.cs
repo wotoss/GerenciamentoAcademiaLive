@@ -24,7 +24,34 @@ namespace AcademiaGerenciamentoLibary.Services
             _unityOfWork = unityOfWork;
             _mapper = mapper;
         }
-        //Implementação - comunicação IUnitOfWork
+        public async Task<Aluno> AdicionarAlunoAsync(AlunoDto alunoDto)
+        {
+            Debugger.Break();
+            var aluno = _mapper.Map<Aluno>(alunoDto);
+
+            await _alunoRepository.AdicionarAlunoAsync(aluno);
+
+            await _unityOfWork.SaveChangesAsync();
+
+            return aluno;
+        }
+        public async Task<Aluno?> AtualizarAlunoAsync(int id, AlunoDto alunoDto)
+        {
+            Debugger.Break();
+            var alunoExistente = await _alunoRepository.ObterPorIdAsync(id);
+            if (alunoExistente == null)
+            {
+                return null;
+            }
+
+            _mapper.Map(alunoDto, alunoExistente);
+
+            _alunoRepository.AtualizarAluno(alunoExistente);
+
+            await _unityOfWork.SaveChangesAsync();
+
+            return alunoExistente;
+        }
 
     }
 }

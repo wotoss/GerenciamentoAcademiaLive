@@ -21,6 +21,22 @@ namespace AcademiaGerenciamentoLibary.Repository
             _dbContext = context;
             _mapper = mapper;
         }
-        //AddAsync
+        public async Task<Aluno> AdicionarAlunoAsync(Aluno aluno)
+        {
+            Debugger.Break();
+            await _dbContext.Alunos.AddAsync(aluno);
+            return aluno;
+        }
+        //buscarId
+        public async Task<Aluno?> ObterPorIdAsync(int id)
+        {
+            return await _dbContext.Alunos.FindAsync(id);
+        }
+        //updte
+        public void AtualizarAluno (Aluno aluno)
+        {
+            _dbContext.Alunos.Update(aluno);
+        }
+        
     }
 }

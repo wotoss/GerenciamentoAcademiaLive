@@ -12,5 +12,8 @@ namespace AcademiaGerenciamentoLibary.Services.Interfaces
     public interface IAlunoServices
     {
         //Task
+        Task<Aluno> AdicionarAlunoAsync(AlunoDto alunoDto);
+
+        Task<Aluno?> AtualizarAlunoAsync(int id, AlunoDto alunoDto);
     }
 }

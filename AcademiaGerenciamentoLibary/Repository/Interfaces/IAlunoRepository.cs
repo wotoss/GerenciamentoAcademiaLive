@@ -9,5 +9,8 @@ namespace AcademiaGerenciamentoLibary.Repository.Interfaces
 {
     public interface IAlunoRepository
     {
+        Task<Aluno> AdicionarAlunoAsync(Aluno aluno);
+        Task<Aluno?> ObterPorIdAsync(int id);
+        void AtualizarAluno(Aluno aluno);
     }
 }
