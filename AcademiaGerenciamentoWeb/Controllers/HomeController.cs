@@ -52,6 +52,40 @@ namespace AcademiaGerenciamentoWeb.Controllers
             });
         }
 
+        //Delete
+        [HttpDelete("excluir-aluno/{id}")]
+        public async Task<IActionResult> ExcluirAluno(int id)
+        {
+            Debugger.Break();
+            var excluir = await _alunoService.ExcluirAlunoAsync(id);
+
+            if (!excluir)
+            {
+                return NotFound(new { mensagem = "Aluno não encontrado !" });
+            }
+            return Ok(new { mensagem = "Aluno excluido com sucesso !" });
+
+        }
+
+        //Consultar
+        [HttpGet("consultar-aluno/{id}")]
+        public async Task<IActionResult> ConsultarAluno(int id)
+        {
+            Debugger.Break();
+            var aluno = await _alunoService.ConsultarAlunoAsync(id);
+
+            if (aluno == null)
+            {
+                return NotFound(new { mensagem = "Aluno não encontrado" });
+            }
+
+            return Ok(new
+            {
+                mensagem = "Aluno encontrado com sucesso!",
+                aluno 
+            });
+        }
+ 
     }
 
 }

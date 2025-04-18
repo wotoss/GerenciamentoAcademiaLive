@@ -12,5 +12,6 @@ namespace AcademiaGerenciamentoLibary.Repository.Interfaces
         Task<Aluno> AdicionarAlunoAsync(Aluno aluno);
         Task<Aluno?> ObterPorIdAsync(int id);
         void AtualizarAluno(Aluno aluno);
+        void RemoverAluno(Aluno aluno);
     }
 }

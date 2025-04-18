@@ -15,5 +15,9 @@ namespace AcademiaGerenciamentoLibary.Services.Interfaces
         Task<Aluno> AdicionarAlunoAsync(AlunoDto alunoDto);
 
         Task<Aluno?> AtualizarAlunoAsync(int id, AlunoDto alunoDto);
+
+        Task<bool> ExcluirAlunoAsync(int id);
+
+        Task<Aluno?> ConsultarAlunoAsync(int id);
     }
 }

@@ -53,5 +53,25 @@ namespace AcademiaGerenciamentoLibary.Services
             return alunoExistente;
         }
 
+        public async Task<bool> ExcluirAlunoAsync(int id)
+        {
+            Debugger.Break();
+            var alunoExistente = await _alunoRepository.ObterPorIdAsync(id);
+
+            if (alunoExistente == null)
+            {
+                return false;
+            }
+            _alunoRepository.RemoverAluno(alunoExistente);
+            await _unityOfWork.SaveChangesAsync();
+
+            return true;
+        }
+
+        public async Task<Aluno?> ConsultarAlunoAsync(int id)
+        {
+            Debugger.Break();
+            return await _alunoRepository.ObterPorIdAsync(id);
+        }
     }
 }

@@ -30,12 +30,18 @@ namespace AcademiaGerenciamentoLibary.Repository
         //buscarId
         public async Task<Aluno?> ObterPorIdAsync(int id)
         {
+            Debugger.Break();
             return await _dbContext.Alunos.FindAsync(id);
         }
         //updte
         public void AtualizarAluno (Aluno aluno)
         {
             _dbContext.Alunos.Update(aluno);
+        }
+        public void RemoverAluno(Aluno aluno)
+        {
+            Debugger.Break();
+            _dbContext.Alunos.Remove(aluno);
         }
         
     }
