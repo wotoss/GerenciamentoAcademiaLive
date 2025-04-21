@@ -10,7 +10,7 @@ using System.Diagnostics;
 namespace AcademiaGerenciamentoWeb.Controllers
 {
     [Route("api/[controller]")]
-    [ApiController]
+    //[ApiController]
     public class HomeController : ControllerBase
     {
         private readonly IAlunoServices _alunoService;
@@ -20,20 +20,70 @@ namespace AcademiaGerenciamentoWeb.Controllers
         {
             _alunoService = alunoService;
         }
-        
-        //-> post - ADIÇÃO
+
         [HttpPost("adicionar-aluno")]
         public async Task<IActionResult> AdicionarAluno([FromBody] AlunoDto alunoDto)
         {
-            //service 
             Debugger.Break();
-            var alunoAdicionado = await _alunoService.AdicionarAlunoAsync(alunoDto);
-            return Ok(new
+            //Dto esta recebendo esta valido conforme as anotações
+            if (!ModelState.IsValid)
             {
-                mensagem = "Aluno adicionado com sucesso !",
-                aluno = alunoAdicionado
-            });
+                return BadRequest(new
+                {
+                    mensagem = "Dados inválidos ! verifique os campos enviados...",
+                    erros = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
+                });
+            }
+
+            try
+            {
+                //service 
+                Debugger.Break();
+                var alunoAdicionado = await _alunoService.AdicionarAlunoAsync(alunoDto);
+                //quero fazer uma validação
+                if (alunoAdicionado == null)
+                {
+                    return Conflict(new
+                    {
+                        mensagem = "Aluno já existe na base de dados"
+                    });
+                }
+
+                return CreatedAtRoute("ObterAlunoPorId", new { id = alunoAdicionado.ID }, new
+                {
+                    mensagem = "Aluno adicionado com sucesso !",
+                    aluno = alunoAdicionado
+
+                });
+            }
+            catch (Exception ex)
+            {
+                //Ocorrendo um erro que eu não preví no meu software
+                return StatusCode(500, new
+                {
+                    mensagem = "Erro interno ao tentar adicionar aluno",
+                    erro = ex.Message,
+                });
+                
+            }
+            
         }
+
+
+        [HttpGet("{id}", Name = "ObterAlunoPorId")]
+        public async Task<IActionResult> ObterPorIdAsync(int id)
+        {
+            var aluno = await _alunoService.ObterPorIdAsync(id);
+            if (aluno == null)
+                return NotFound(new { mensagem = "Aluno não encontrado!" });
+
+            return Ok(aluno);
+        }
+
+
+
+
+        //fim - novo teste
 
         //-> put - Atualizar
         [HttpPut("atualizar-aluno/{id}")]
@@ -52,6 +102,8 @@ namespace AcademiaGerenciamentoWeb.Controllers
             });
         }
 
+
+
         //Delete
         [HttpDelete("excluir-aluno/{id}")]
         public async Task<IActionResult> ExcluirAluno(int id)
@@ -67,6 +119,8 @@ namespace AcademiaGerenciamentoWeb.Controllers
 
         }
 
+
+
         //Consultar
         [HttpGet("consultar-aluno/{id}")]
         public async Task<IActionResult> ConsultarAluno(int id)
@@ -78,11 +132,12 @@ namespace AcademiaGerenciamentoWeb.Controllers
             {
                 return NotFound(new { mensagem = "Aluno não encontrado" });
             }
-
+            Debugger.Break();
             return Ok(new
             {
+                
                 mensagem = "Aluno encontrado com sucesso!",
-                aluno 
+                aluno
             });
         }
  

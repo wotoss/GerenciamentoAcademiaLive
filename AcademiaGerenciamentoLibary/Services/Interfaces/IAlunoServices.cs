@@ -12,12 +12,14 @@ namespace AcademiaGerenciamentoLibary.Services.Interfaces
     public interface IAlunoServices
     {
         //Task
-        Task<Aluno> AdicionarAlunoAsync(AlunoDto alunoDto);
+        Task<Aluno?> AdicionarAlunoAsync(AlunoDto alunoDto);
 
         Task<Aluno?> AtualizarAlunoAsync(int id, AlunoDto alunoDto);
 
         Task<bool> ExcluirAlunoAsync(int id);
 
         Task<Aluno?> ConsultarAlunoAsync(int id);
+
+        Task<Aluno?> ObterPorIdAsync(int id);
     }
 }

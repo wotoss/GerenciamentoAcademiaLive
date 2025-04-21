@@ -3,6 +3,7 @@ using AcademiaGerenciamentoLibary.DTO;
 using AcademiaGerenciamentoLibary.Repository.Interfaces;
 using AcademiaGerenciamentoLibary.Services.Interfaces;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -17,21 +18,29 @@ namespace AcademiaGerenciamentoLibary.Services
         private readonly IAlunoRepository _alunoRepository;
         private readonly IUnitOfWork _unityOfWork;
         private readonly IMapper _mapper;
-
-        public AlunoServices(IAlunoRepository alunoRepository, IUnitOfWork unityOfWork, IMapper mapper)
+        
+        public AlunoServices(IAlunoRepository alunoRepository, IUnitOfWork unityOfWork, IMapper mapper, DbContextApplication dbContext)
         {
             _alunoRepository = alunoRepository;
             _unityOfWork = unityOfWork;
             _mapper = mapper;
         }
-        public async Task<Aluno> AdicionarAlunoAsync(AlunoDto alunoDto)
+        public async Task<Aluno?> AdicionarAlunoAsync(AlunoDto alunoDto)
         {
             Debugger.Break();
+
+            //chamada
+            bool alunoExistente = await _alunoRepository.ExisteCpfAsync(alunoDto.Cpf);
+            if (alunoExistente)
+            {
+                return null;
+            }
+            
             var aluno = _mapper.Map<Aluno>(alunoDto);
 
             await _alunoRepository.AdicionarAlunoAsync(aluno);
 
-            await _unityOfWork.SaveChangesAsync();
+            await _unityOfWork.CommitAsync();
 
             return aluno;
         }
@@ -48,7 +57,7 @@ namespace AcademiaGerenciamentoLibary.Services
 
             _alunoRepository.AtualizarAluno(alunoExistente);
 
-            await _unityOfWork.SaveChangesAsync();
+            await _unityOfWork.CommitAsync();
 
             return alunoExistente;
         }
@@ -63,12 +72,18 @@ namespace AcademiaGerenciamentoLibary.Services
                 return false;
             }
             _alunoRepository.RemoverAluno(alunoExistente);
-            await _unityOfWork.SaveChangesAsync();
+            await _unityOfWork.CommitAsync();
 
             return true;
         }
 
         public async Task<Aluno?> ConsultarAlunoAsync(int id)
+        {
+            Debugger.Break();
+            return await _alunoRepository.ObterPorIdAsync(id);
+        }
+
+        public async Task<Aluno?> ObterPorIdAsync(int id)
         {
             Debugger.Break();
             return await _alunoRepository.ObterPorIdAsync(id);

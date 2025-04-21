@@ -11,7 +11,8 @@ namespace AcademiaGerenciamentoLibary
 
         IPagamentoRepository PagamentoRepository { get; }
 
-        Task<int> SaveChangesAsync();
+        //Task<int> SaveChangesAsync();//CommitAsync
+        Task<int> CommitAsync();
 
         int Salvar();
     }

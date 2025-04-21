@@ -2,6 +2,7 @@
 using AcademiaGerenciamentoLibary.DTO;
 using AcademiaGerenciamentoLibary.Repository.Interfaces;
 using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -26,14 +27,14 @@ namespace AcademiaGerenciamentoLibary.Repository
             Debugger.Break();
             await _dbContext.Alunos.AddAsync(aluno);
             return aluno;
+            
         }
-        //buscarId
         public async Task<Aluno?> ObterPorIdAsync(int id)
         {
             Debugger.Break();
             return await _dbContext.Alunos.FindAsync(id);
         }
-        //updte
+        
         public void AtualizarAluno (Aluno aluno)
         {
             _dbContext.Alunos.Update(aluno);
@@ -43,6 +44,10 @@ namespace AcademiaGerenciamentoLibary.Repository
             Debugger.Break();
             _dbContext.Alunos.Remove(aluno);
         }
-        
+        public async Task<bool> ExisteCpfAsync(string cpf)
+        {
+            Debugger.Break();
+            return await _dbContext.Alunos.AnyAsync(a => a.Cpf == cpf);
+        }
     }
 }

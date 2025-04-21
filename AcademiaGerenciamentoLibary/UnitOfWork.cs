@@ -25,7 +25,7 @@ namespace AcademiaGerenciamentoLibary
             AlunoRepository = alunoRepository;
             PagamentoRepository = pagamentoRepository;
         }
-        public async Task<int> SaveChangesAsync()
+        public async Task<int> CommitAsync()
         {
             Debugger.Break();
             int linhaAfetadas = await _dbContext.SaveChangesAsync();
@@ -49,8 +49,7 @@ namespace AcademiaGerenciamentoLibary
 
         public void Dispose()
         {
-            _dbContext.Dispose();
-            
+            _dbContext.Dispose();   
         }
        
     }

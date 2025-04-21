@@ -13,5 +13,6 @@ namespace AcademiaGerenciamentoLibary.Repository.Interfaces
         Task<Aluno?> ObterPorIdAsync(int id);
         void AtualizarAluno(Aluno aluno);
         void RemoverAluno(Aluno aluno);
+        Task<bool> ExisteCpfAsync(string cpf);
     }
 }
