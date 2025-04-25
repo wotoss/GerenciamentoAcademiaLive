@@ -80,30 +80,45 @@ namespace AcademiaGerenciamentoWeb.Controllers
             return Ok(aluno);
         }
 
-
-
-
-        //fim - novo teste
-
         //-> put - Atualizar
         [HttpPut("atualizar-aluno/{id}")]
         public async Task<IActionResult> AtualizarAluno(int id, [FromBody] AlunoDto alunoDto)
         {
             Debugger.Break();
-            var alunoAtualizado = await _alunoService.AtualizarAlunoAsync(id, alunoDto);
-            if (alunoAtualizado == null)
+            if (!ModelState.IsValid)
             {
-                return NotFound(new { mensagem = "Aluno não encontrado !" });
+                return BadRequest(new 
+                {
+                    mensagem = "Dados inválidos, verifique os campos enviados...",
+                    erros = ModelState.Values
+                            .SelectMany(v => v.Errors)
+                            .Select(e => e.ErrorMessage)
+                });
             }
-            return Ok(new
+            try
             {
-                mensagem = "Aluno atualizado com sucesso !",
-                aluno = alunoAtualizado
-            });
+                Debugger.Break();
+                var alunoAtualizado = await _alunoService.AtualizarAlunoAsync(id, alunoDto);
+                if (alunoAtualizado == null)
+                {
+                    return NotFound(new { mensagem = "Aluno não encontrado !" });
+                }
+                return Ok(new
+                {
+                    mensagem = "Aluno atualizado com sucesso !",
+                    aluno = alunoAtualizado
+                });
+
+            }
+            catch (Exception execessao)
+            {
+                return StatusCode(500, new
+                {
+                    mensagem = "Erro interno ao tentar atualizar o aluno...",
+                    erro = execessao.Message
+                });
+            }
         }
-
-
-
         //Delete
         [HttpDelete("excluir-aluno/{id}")]
         public async Task<IActionResult> ExcluirAluno(int id)
@@ -115,7 +130,8 @@ namespace AcademiaGerenciamentoWeb.Controllers
             {
                 return NotFound(new { mensagem = "Aluno não encontrado !" });
             }
-            return Ok(new { mensagem = "Aluno excluido com sucesso !" });
+            //recurso excluido - sem corpo - StatusCode: 204
+            return NoContent();
 
         }
 
@@ -140,7 +156,50 @@ namespace AcademiaGerenciamentoWeb.Controllers
                 aluno
             });
         }
- 
+
+        //JsonResult ListarTodos
+        [HttpGet("listar-alunos")]
+        public async Task<JsonResult> ListarTodosAlunos()
+        {
+            try
+            {
+                //melhor do mundos
+                var alunos = await _alunoService.ObterTodosAlunosAsync();
+                if (alunos == null || !alunos.Any())
+                {
+                    Response.StatusCode = 204; //NoContent
+                    return new JsonResult(new
+                    {
+                        status = 204,
+                        sucesso = true,
+                        mensagem = "Nenhum aluno encontrado.",
+                        dados = new object[] { }
+                    });
+                }
+                Response.StatusCode = 200; //Ok
+                return new JsonResult(new
+                {
+                    status = 200,
+                    sucesso = true,
+                    mensagem = "Lista de alunos obtida com sucesso...",
+                    dados = alunos
+                });
+            }
+            catch (Exception execessao)
+            {
+                //erro inesperado ou personalizado 
+                Response.StatusCode = 500; //Erro Servidor Interno
+                return new JsonResult(new
+                {
+                    status = 500,
+                    sucesso = false,
+                    mensagem = "Erro ao buscar os alunos...",
+                    erro = execessao.Message
+
+                });
+            }
+        }
+
     }
 
 }

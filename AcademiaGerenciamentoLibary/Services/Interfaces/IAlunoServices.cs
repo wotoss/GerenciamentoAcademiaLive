@@ -21,5 +21,7 @@ namespace AcademiaGerenciamentoLibary.Services.Interfaces
         Task<Aluno?> ConsultarAlunoAsync(int id);
 
         Task<Aluno?> ObterPorIdAsync(int id);
+
+        Task<IEnumerable<AlunoDto>> ObterTodosAlunosAsync();
     }
 }

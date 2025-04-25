@@ -49,5 +49,12 @@ namespace AcademiaGerenciamentoLibary.Repository
             Debugger.Break();
             return await _dbContext.Alunos.AnyAsync(a => a.Cpf == cpf);
         }
+
+        public async Task<IEnumerable<Aluno>> ObterTodosAsync()
+        {
+            return await _dbContext.Alunos
+                 .AsNoTracking()
+                 .ToListAsync();
+        }
     }
 }

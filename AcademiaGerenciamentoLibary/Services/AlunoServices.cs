@@ -88,5 +88,11 @@ namespace AcademiaGerenciamentoLibary.Services
             Debugger.Break();
             return await _alunoRepository.ObterPorIdAsync(id);
         }
+        //
+        public async Task<IEnumerable<AlunoDto>> ObterTodosAlunosAsync()
+        {
+            var alunos = await _alunoRepository.ObterTodosAsync();
+            return _mapper.Map<IEnumerable<AlunoDto>>(alunos);
+        }
     }
 }

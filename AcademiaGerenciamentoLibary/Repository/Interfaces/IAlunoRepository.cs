@@ -14,5 +14,6 @@ namespace AcademiaGerenciamentoLibary.Repository.Interfaces
         void AtualizarAluno(Aluno aluno);
         void RemoverAluno(Aluno aluno);
         Task<bool> ExisteCpfAsync(string cpf);
+        Task<IEnumerable<Aluno>> ObterTodosAsync();
     }
 }
