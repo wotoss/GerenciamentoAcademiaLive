@@ -9,7 +9,7 @@
 
 ---
 
-## 📚 Contextualização e objetivo do Projeto
+## 💡 Motivação e Propósito
 
 O projeto **Gym Control** foi desenvolvido com o propósito de modernizar e automatizar a gestão de academias que ficam em bairros. Em muitas academias de pequeno e médio porte, o controle de alunos, planos, pagamentos e treinos ainda é feito manualmente, o que torna a operação lenta, suscetível a erros e pouco escalável.
 
