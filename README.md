@@ -1,4 +1,4 @@
-# 🏋️‍♂️ Controle de Academia – Software Web para Gerenciamento de Academias (API + Front-end)
+# 🏋️‍♂️ Software Web para Gerenciamento de Academias (API + Front-end)
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-purple?logo=dotnet)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-8.0-blue?logo=dotnet)
