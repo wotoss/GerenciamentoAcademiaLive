@@ -1,11 +1,10 @@
-# 🏋️‍♂️ Gym Control – Gerenciador de Academia via API
+# 🏋️‍♂️ Controle de Academia – Software Web para Gerenciamento de Academias (API + Front-end)
 
 ![.NET 8](https://img.shields.io/badge/.NET-8.0-purple?logo=dotnet)
 ![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-8.0-blue?logo=dotnet)
 ![Entity Framework Core](https://img.shields.io/badge/Entity_Framework_Core-8.0-green?logo=ef)
 ![SQL Server](https://img.shields.io/badge/SQL_Server-EF.SqlServer-red?logo=microsoftsqlserver)
 ![Postman](https://img.shields.io/badge/Tested_with-Postman-orange?logo=postman)
-
 
 ---
 
@@ -52,13 +51,13 @@ nos pagamentos dos alunos.
 
 ## 📺 Lives no YouTube
 
-Acompanhe a construção desse projeto em tempo real nas minhas lives semanais:
+Acompanhe e de sujestões na construção e desenvolvimento desse projeto em tempo real nas minhas lives semanais:
 
 🔴 Canal: [woto programador](https://www.youtube.com/@wotoprogramador1176/streams)
 
 ---
 
-🧑‍💻 Autor
+🧑‍💻 Autor:
 Desenvolvido com ❤️ por Woto e Comunidade nas lives. 
 
 
