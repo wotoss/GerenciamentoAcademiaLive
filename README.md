@@ -1,10 +1,11 @@
 # 🏋️‍♂️ Gym Control – Gerenciador de Academia via API
 
-version project 
-stack .Net  
-stack SqlServer
-stack Postman  
-MIT License  
+![.NET 8](https://img.shields.io/badge/.NET-8.0-purple?logo=dotnet)
+![ASP.NET Core](https://img.shields.io/badge/ASP.NET_Core-8.0-blue?logo=dotnet)
+![Entity Framework Core](https://img.shields.io/badge/Entity_Framework_Core-8.0-green?logo=ef)
+![SQL Server](https://img.shields.io/badge/SQL_Server-EF.SqlServer-red?logo=microsoftsqlserver)
+![Postman](https://img.shields.io/badge/Tested_with-Postman-orange?logo=postman)
+
 
 ---
 
@@ -53,7 +54,7 @@ nos pagamentos dos alunos.
 
 Acompanhe a construção desse projeto em tempo real nas minhas lives semanais:
 
-🔴 Canal: [Seu Canal Aqui](https://www.youtube.com/@wotoprogramador1176/streams)
+🔴 Canal: [woto programador](https://www.youtube.com/@wotoprogramador1176/streams)
 
 ---
 
