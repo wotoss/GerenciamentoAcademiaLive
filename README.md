@@ -59,7 +59,7 @@ Acompanhe e de sujestões na construção e desenvolvimento desse projeto em tem
 
 ---
 
-🧑‍💻 Autor:
+🧑‍💻 
 Desenvolvido com ❤️ por Woto e Comunidade nas lives. 
 
 
