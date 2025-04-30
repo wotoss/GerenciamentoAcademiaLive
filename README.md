@@ -18,6 +18,9 @@ Desta forma o nosso software está focados no processo pedagogico de aprendizado
 
 nos pagamentos dos alunos.
 
+![Linha do Tempo](https://raw.githubusercontent.com/wotoss/GerenciamentoAcademiaLive/main/AcademiaGerenciamentoWeb/wwwroot/imagens/linha-do-tempo.png)
+
+
 ---
 
 ## 🔧 Funcionalidades
