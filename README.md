@@ -20,6 +20,7 @@ nos pagamentos dos alunos.
 
 ![Linha do Tempo](https://raw.githubusercontent.com/wotoss/GerenciamentoAcademiaLive/main/AcademiaGerenciamentoWeb/wwwroot/imagens/Pensamento-Disgner.png)
 
+
 ---
 
 ## 🔧 Funcionalidades
