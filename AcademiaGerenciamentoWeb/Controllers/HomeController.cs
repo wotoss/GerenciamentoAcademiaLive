@@ -96,7 +96,8 @@ namespace AcademiaGerenciamentoWeb.Controllers
                 return CreatedAtRoute("ObterAlunoPorId", new { id = alunoAdicionado.ID }, new
                 {
                     mensagem = "Aluno e pagamentos adicionados com sucesso!",
-                    aluno = alunoAdicionado
+                    aluno = alunoAdicionado 
+
                 });
             }
             catch (Exception ex)
