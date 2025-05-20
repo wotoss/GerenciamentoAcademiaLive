@@ -25,25 +25,55 @@ namespace AcademiaGerenciamentoLibary.Services
             _unityOfWork = unityOfWork;
             _mapper = mapper;
         }
+        //public async Task<Aluno?> AdicionarAlunoAsync(AlunoDto alunoDto)
+        //{
+        //    Debugger.Break();
+
+        //    //chamada
+        //    bool alunoExistente = await _alunoRepository.ExisteCpfAsync(alunoDto.Cpf);
+        //    if (alunoExistente)
+        //    {
+        //        return null;
+        //    }
+
+        //    var aluno = _mapper.Map<Aluno>(alunoDto);
+
+        //    await _alunoRepository.AdicionarAlunoAsync(aluno);
+
+        //    await _unityOfWork.CommitAsync();
+
+        //    return aluno;
+        //}
+
+        //inicio - 06-05-25
+
         public async Task<Aluno?> AdicionarAlunoAsync(AlunoDto alunoDto)
         {
             Debugger.Break();
-
-            //chamada
-            bool alunoExistente = await _alunoRepository.ExisteCpfAsync(alunoDto.Cpf);
-            if (alunoExistente)
-            {
+            if (await _alunoRepository.ExisteCpfAsync(alunoDto.Cpf))
                 return null;
-            }
-            
+
             var aluno = _mapper.Map<Aluno>(alunoDto);
+            //pagamento
+            aluno.Pagamentos.Clear();
+            foreach (var pagamentoDto in alunoDto.Pagamentos)
+            {
+                aluno.Pagamentos.Add(new Pagamento
+                {
+                    ValorPago = pagamentoDto.ValorPago,
+                    MetodoPagamento = pagamentoDto.MetodoPagamento,
+                    DataPagamento = pagamentoDto.DataPagamento,
+                    StatusPagamento = pagamentoDto.StatusPagamento
+                });
+            }
 
             await _alunoRepository.AdicionarAlunoAsync(aluno);
-
             await _unityOfWork.CommitAsync();
-
+            
             return aluno;
         }
+
+        //fim 
         public async Task<Aluno?> AtualizarAlunoAsync(int id, AlunoDto alunoDto)
         {
             Debugger.Break();

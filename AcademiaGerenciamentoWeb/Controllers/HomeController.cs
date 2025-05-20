@@ -21,53 +21,96 @@ namespace AcademiaGerenciamentoWeb.Controllers
             _alunoService = alunoService;
         }
 
+        //[HttpPost("adicionar-aluno")]
+        //public async Task<IActionResult> AdicionarAluno([FromBody] AlunoDto alunoDto)
+        //{
+        //    Debugger.Break();
+        //    //Dto esta recebendo esta valido conforme as anotações
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(new
+        //        {
+        //            mensagem = "Dados inválidos ! verifique os campos enviados...",
+        //            erros = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
+        //        });
+        //    }
+
+        //    try
+        //    {
+        //        //service 
+        //        Debugger.Break();
+        //        var alunoAdicionado = await _alunoService.AdicionarAlunoAsync(alunoDto);
+        //        //quero fazer uma validação
+        //        if (alunoAdicionado == null)
+        //        {
+        //            return Conflict(new
+        //            {
+        //                mensagem = "Aluno já existe na base de dados"
+        //            });
+        //        }
+
+        //        return CreatedAtRoute("ObterAlunoPorId", new { id = alunoAdicionado.ID }, new
+        //        {
+        //            mensagem = "Aluno adicionado com sucesso !",
+        //            aluno = alunoAdicionado
+
+        //        });
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        //Ocorrendo um erro que eu não preví no meu software
+        //        return StatusCode(500, new
+        //        {
+        //            mensagem = "Erro interno ao tentar adicionar aluno",
+        //            erro = ex.Message,
+        //        });
+
+        //    }
+
+        //}
+
+        //inicio - coloquei agora - 06-05-25
+
         [HttpPost("adicionar-aluno")]
         public async Task<IActionResult> AdicionarAluno([FromBody] AlunoDto alunoDto)
         {
             Debugger.Break();
-            //Dto esta recebendo esta valido conforme as anotações
             if (!ModelState.IsValid)
             {
                 return BadRequest(new
                 {
-                    mensagem = "Dados inválidos ! verifique os campos enviados...",
+                    mensagem = "Dados inválidos. Verifique os campos enviados.",
                     erros = ModelState.Values.SelectMany(v => v.Errors).Select(e => e.ErrorMessage)
                 });
             }
 
             try
             {
-                //service 
-                Debugger.Break();
                 var alunoAdicionado = await _alunoService.AdicionarAlunoAsync(alunoDto);
-                //quero fazer uma validação
+
                 if (alunoAdicionado == null)
                 {
-                    return Conflict(new
-                    {
-                        mensagem = "Aluno já existe na base de dados"
-                    });
+                    return Conflict(new { mensagem = "Aluno já existe na base de dados." });
                 }
 
                 return CreatedAtRoute("ObterAlunoPorId", new { id = alunoAdicionado.ID }, new
                 {
-                    mensagem = "Aluno adicionado com sucesso !",
+                    mensagem = "Aluno e pagamentos adicionados com sucesso!",
                     aluno = alunoAdicionado
-
                 });
             }
             catch (Exception ex)
             {
-                //Ocorrendo um erro que eu não preví no meu software
                 return StatusCode(500, new
                 {
-                    mensagem = "Erro interno ao tentar adicionar aluno",
-                    erro = ex.Message,
+                    mensagem = "Erro interno ao tentar adicionar o aluno.",
+                    erro = ex.Message
                 });
-                
             }
-            
         }
+
+
+        //fim
 
 
         [HttpGet("{id}", Name = "ObterAlunoPorId")]

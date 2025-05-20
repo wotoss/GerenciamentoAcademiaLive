@@ -1,6 +1,7 @@
 ﻿
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text.Json.Serialization;
 
 
 namespace AcademiaGerenciamentoLibary.Domain
@@ -18,6 +19,7 @@ namespace AcademiaGerenciamentoLibary.Domain
         [StringLength(50)]
         public string MetodoPagamento { get; set; } = string.Empty;    
         public byte StatusPagamento { get; set; }
+        [JsonIgnore]
         //relacionamento - cada pagamento estará ligado a um unico aluno
         [ForeignKey("AlunoID")]
         public virtual Aluno? Aluno { get; set; }

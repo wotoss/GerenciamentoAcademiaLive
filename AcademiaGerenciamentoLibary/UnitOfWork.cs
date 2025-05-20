@@ -27,10 +27,20 @@ namespace AcademiaGerenciamentoLibary
         }
         public async Task<int> CommitAsync()
         {
-            Debugger.Break();
-            int linhaAfetadas = await _dbContext.SaveChangesAsync();
+            try
+            {
+                Debugger.Break();
+                int linhaAfetadas = await _dbContext.SaveChangesAsync();
 
-            return linhaAfetadas;
+                return linhaAfetadas;
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error: " + ex.Message);
+                return 0;
+            }
+            
         }
 
         public int Salvar()

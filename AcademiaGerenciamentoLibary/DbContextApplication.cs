@@ -17,6 +17,17 @@ namespace AcademiaGerenciamentoLibary
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            //modelBuilder.Entity<Aluno>()
+            //    .HasMany(a => a.Pagamentos)
+            //    .WithOne(p => p.Aluno!)
+            //    .HasForeignKey(p => p.AlunoID);
+
+            modelBuilder.Entity<Pagamento>()
+               .HasOne(p => p.Aluno)
+               .WithMany(a => a.Pagamentos)
+               .HasForeignKey(p => p.AlunoID)
+               .OnDelete(DeleteBehavior.Restrict); // ou .SetNull ou .NoAction, dependendo da lógica desejada
+
             modelBuilder.ApplyConfiguration(new AlunoMapping());
             modelBuilder.ApplyConfiguration(new PagamentoMapping());
         }
